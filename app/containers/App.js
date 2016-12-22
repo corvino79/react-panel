@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Header from '../Components/Header'
+import Drawer from '../Components/Drawer'
 
 class App extends Component {
   constructor(props) {
@@ -15,18 +16,20 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
-        <Helmet
-          defaultTitle="Redux real-world example"
-          titleTemplate="%s - Redux real-world example"
+    <div>
+        <Helmet defaultTitle="Panel Compropago" titleTemplate="%s" htmlAttributes={{"lang": "en"}}
           meta={[
-            {"name": "description", "content": "A boilerplate doing universal/isomorphic rendering with Redux + React-router + Express"},
+            {"name": "description", "content": "Panel Compropago"},
           ]}
-          htmlAttributes={{"lang": "en"}}
         />
-          <Header></Header>
-          {this.props.children}
-      </div>
+        <Header></Header>
+        <Drawer className="side-nav fixed" docked={false} width={300} open={true}>
+            <div>fgdfgdfg</div>
+        </Drawer>
+        <div className="container">
+            {this.props.children}
+        </div>
+    </div>
     )
   }
 }

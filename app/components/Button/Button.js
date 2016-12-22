@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { findDOMNode } from 'react-dom';
 import { Link } from 'react-router';
 import Icon from '../Icon';
-import splitObject from '../_util/splitObject';
+import splitObject from '../_utils/splitObject';
 const rxTwoCNChar = /^[\u4e00-\u9fa5]{2}$/;
 const isTwoCNChar = rxTwoCNChar.test.bind(rxTwoCNChar);
 function isString(str) {
