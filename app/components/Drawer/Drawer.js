@@ -23,7 +23,6 @@ class Drawer extends Component {
         swipeAreaWidth: PropTypes.number,
         width: PropTypes.number,
         zDepth: PropTypes.oneOf([0, 1, 2, 3, 4, 5]),
-
     };
 
     static defaultProps = {
@@ -73,15 +72,14 @@ class Drawer extends Component {
     }
 
     getStyles() {
-
         const x = this.getTranslateMultiplier() * (this.state.open ? 0 : this.getMaxTranslateX());
-
+        console.log("xxx: ", x);
         const styles = {
             root: {
                 height: '100%',
                 width: '301px',
                 position: 'fixed',
-                zIndex: 5,
+                zIndex: 1200,
                 left: 0,
                 top: 0,
                 transform: `translate(${x}px, 0)`,
@@ -108,13 +106,13 @@ class Drawer extends Component {
     }
 
     close(reason) {
-        if (this.props.open === null) this.setState({ open: false });
+        this.setState({ open: false });
         if (this.props.onRequestChange) this.props.onRequestChange(false, reason);
         return this;
     }
 
     open(reason) {
-        if (this.props.open === null) this.setState({ open: true });
+        this.setState({ open: true });
         if (this.props.onRequestChange) this.props.onRequestChange(true, reason);
         return this;
     }
@@ -286,7 +284,8 @@ class Drawer extends Component {
                 className = { overlayClassName }
                 style = { Object.assign(styles.overlay, overlayStyle) }
                 transitionEnabled = {!this.state.swiping }
-                >fdfsdf</Overlay>
+                onTouchTap={this.handleTouchTapOverlay}
+                ></Overlay>
             );
         }
 
@@ -294,12 +293,12 @@ class Drawer extends Component {
             <div className = { className } style = { style }>
                 { overlay }
                 <Paper
-                  ref="clickAwayableElement"
-                  zDepth={zDepth}
-                  rounded={false}
-                  transitionEnabled={!this.state.swiping}
-                  className={containerClassName}
-                  style={Object.assign(styles.root, openSecondary && styles.rootWhenOpenRight, containerStyle)}
+                    ref="clickAwayableElement"
+                    zDepth={zDepth}
+                    rounded={false}
+                    transitionEnabled={true}
+                    className={containerClassName}
+                    style={Object.assign(styles.root, openSecondary && styles.rootWhenOpenRight, containerStyle)}
                 >
                     {children}
                 </Paper>

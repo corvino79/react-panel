@@ -40,3 +40,10 @@ export function loadQuestionDetail ({ id, history }) {
     ]
   }
 }
+
+export function handreDrawer (state) {
+    return {
+        type: 'OPEN_DRAWER',
+        open: state
+    }
+}

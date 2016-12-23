@@ -1,23 +1,22 @@
 import React, { Component, PropTypes } from 'react';
 import transitions from '../_utils/transitions';
 
-function getStyles(props, context) {
+function getStyles(props) {
     const {
         rounded,
         circle,
         transitionEnabled,
         zDepth,
     } = props;
-
     return {
         root: {
-            color: paper.color,
-            backgroundColor: paper.backgroundColor,
+            /*color: paper.color,
+            backgroundColor: paper.backgroundColor,*/
             transition: transitionEnabled && transitions.easeOut(),
             boxSizing: 'border-box',
-            fontFamily: baseTheme.fontFamily,
+            /*fontFamily: baseTheme.fontFamily,*/
             WebkitTapHighlightColor: 'rgba(0,0,0,0)',
-            boxShadow: paper.zDepthShadows[zDepth - 1],
+            /*boxShadow: paper.zDepthShadows[zDepth - 1],*/
             borderRadius: circle ? '50%' : rounded ? '2px' : '0px',
         },
     };
@@ -50,9 +49,8 @@ class Paper extends Component {
             zDepth,
             ...other
         } = this.props;
-
         return ( 
-            <div {...other }> { children } </div>
+            <div {...other} style={this.props.style}> { children } </div>
         );
     }
 }

@@ -6,14 +6,21 @@ import Header from '../Components/Header'
 import Drawer from '../Components/Drawer'
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { loading: false }
-    this.enterLoading = this.enterLoading.bind(this);
-  }
-  enterLoading() {
-    this.setState({ loading: true });
-  }
+    constructor(props) {
+        super(props);
+        this.state = { loading: false, open: false }
+        this.enterLoading = this.enterLoading.bind(this);
+    }
+    enterLoading() {
+        this.setState({ loading: true });
+    }
+
+    handleTouchTapOpen = (event) => {
+        event.preventDefault();
+        this.setState({ open: true });
+    }
+
+
   render() {
     return (
     <div>
@@ -22,8 +29,8 @@ class App extends Component {
             {"name": "description", "content": "Panel Compropago"},
           ]}
         />
-        <Header></Header>
-        <Drawer className="side-nav fixed" docked={false} width={300} open={true}>
+        <Header handleTouchTapOpen={this.handleTouchTapOpen}></Header>
+        <Drawer className="side-nav fixed" docked={false} width={300} open={this.state.open}>
             <div>fgdfgdfg</div>
         </Drawer>
         <div className="container">

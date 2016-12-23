@@ -105,7 +105,6 @@ export default class Button extends React.Component<ButtonProps, any> {
 
   render() {
     const props = this.props;
-    console.log('paso: ', props);
     const [{ type, shape, size, className, href, htmlType, children, icon, loading, prefixCls }, others] = splitObject(props,
       ['type', 'shape', 'size', 'className', 'href', 'htmlType', 'children', 'icon', 'loading', 'prefixCls']);
     // large => lg
@@ -128,7 +127,6 @@ export default class Button extends React.Component<ButtonProps, any> {
     const kids = React.Children.map(children, insertSpace);
 
     let button = null;
-    console.log(href);
     if (href !== undefined) {
       button =  <Link
                   {...others}
