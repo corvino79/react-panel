@@ -6,7 +6,7 @@ import drawer from 'reducers/Drawer'
 const rootReducer = combineReducers({
   questions,
   questionDetail,
-	drawer
+  drawer: drawer
 })
 
 export default rootReducer

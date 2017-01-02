@@ -40,10 +40,19 @@ export function loadQuestionDetail ({ id, history }) {
     ]
   }
 }
-
-export function handreDrawer (state) {
+export const OPEN_DRAWER = 'OPEN_DRAWER'
+export const CLOSE_DRAWER = 'OPEN_DRAWER'
+export function openDrawer () {
     return {
-        type: 'OPEN_DRAWER',
-        open: state
+        type: OPEN_DRAWER,
+        payload: true
     }
 }
+
+export function closeDrawer () {
+    return {
+        type: CLOSE_DRAWER,
+        payload: false
+    }
+}
+

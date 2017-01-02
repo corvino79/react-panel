@@ -12,7 +12,9 @@ class Header extends Component {
 
     render() {
         return (
-	        <div className="header" onTouchTap={this.props.handleTouchTapOpen}>Headers</div>
+            <div className="header">
+                {this.props.children}
+            </div>
         );
     }
 }

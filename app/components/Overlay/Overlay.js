@@ -6,11 +6,13 @@ function getStyles(props, context) {
 
     const style = {
         root: {
-            backgroundColor: '#000',
+            left: '-100%',
+            opacity: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.541176)',
             transition: props.transitionEnabled && `${transitions.easeOut('0ms', 'left', '400ms')}, ${transitions.easeOut('400ms', 'opacity')}`,
         },
     };
-
+    
     if (props.show) {
         Object.assign(style.root, {
             left: 0,
@@ -47,13 +49,13 @@ class Overlay extends Component {
             transitionEnabled,
             ...other
         } = this.props;
-
         const styles = getStyles(this.props, this.context);
 
         return (
             <div {...other }
             ref="overlay"
             className="overlay"
+            style={styles.root}
             > 
                 { autoLockScrolling && <AutoLockScrolling lock={ show }/> }
             </div>

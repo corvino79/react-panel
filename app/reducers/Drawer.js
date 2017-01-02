@@ -1,18 +1,20 @@
-const initialState = {
-    open: false
-}
+import * as ActionType from 'actions/questions'
+import _ from 'lodash'
+import Immutable from 'immutable'
 
-const Drawer = (state = initialState, action) => {
-  switch (action.type)
-  {
-    case 'OPEN_DRAWWER':
-      return {
-        id: action.id,
-        open: action.open
-      }
-      break;
+let defaultState = Immutable.fromJS({
+  open: null
+})
 
-    default:
-      return state;
-  }
+export default function(state = defaultState, action) {
+	switch(action.type) {
+		case ActionType.OPEN_DRAWER:
+		  	return Object.assign({}, state, {open: action.payload})
+			break;
+		case ActionType.CLOSE_DRAWER:
+		  	return Object.assign({}, state, {open: action.payload})
+		  	break;
+		default:
+		return state
+	}
 }

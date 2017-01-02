@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
+import { connect } from 'react-redux'
 import transitions from '../_utils/transitions';
 import Overlay from '../Overlay';
 import Paper from '../Paper';
+import { openDrawer, closeDrawer } from '../../actions/questions'
 
 let openNavEventHandler = null;
 
@@ -73,7 +74,6 @@ class Drawer extends Component {
 
     getStyles() {
         const x = this.getTranslateMultiplier() * (this.state.open ? 0 : this.getMaxTranslateX());
-        console.log("xxx: ", x);
         const styles = {
             root: {
                 height: '100%',
@@ -102,7 +102,7 @@ class Drawer extends Component {
     }
 
     shouldShow() {
-        return this.state.open || !!this.state.swiping;
+        return this.state.open;
     }
 
     close(reason) {
@@ -119,13 +119,11 @@ class Drawer extends Component {
 
     handleTouchTapOverlay = (event) => {
         event.preventDefault();
-        this.close('clickaway');
-    };
-
-    handleKeyUp = (event) => {
-        if (this.state.open && !this.props.docked && keycode(event) === 'esc') {
-            this.close('escape');
-        }
+        //this.close('clickaway');
+        if (this.props.Open)
+          this.props.closeDrawer();
+        else
+          this.props.openDrawer(this.props.Open);
     };
 
     getMaxTranslateX() {
@@ -307,4 +305,21 @@ class Drawer extends Component {
     }
 }
 
-export default Drawer;
+function mapDispathToProps(dispatch) {
+  return {
+    openDrawer: () => {
+        dispatch(openDrawer())
+    },
+    closeDrawer: () => {
+        dispatch(closeDrawer())
+    }
+  }
+}
+
+function mapStateToProps(state) {
+  return {
+    Open: state.drawer.open
+  }
+}
+
+export default connect(mapStateToProps, mapDispathToProps)(Drawer)

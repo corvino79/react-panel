@@ -4,20 +4,21 @@ import Helmet from 'react-helmet'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Header from '../Components/Header'
 import Drawer from '../Components/Drawer'
+import Button from '../components/Button'
+import { openDrawer, closeDrawer } from '../actions/questions'
 
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = { loading: false, open: false }
-        this.enterLoading = this.enterLoading.bind(this);
-    }
-    enterLoading() {
-        this.setState({ loading: true });
+        this.handleTouchTapOpen = this.handleTouchTapOpen.bind(this);
     }
 
     handleTouchTapOpen = (event) => {
         event.preventDefault();
-        this.setState({ open: true });
+        if (this.props.Open)
+          this.props.closeDrawer();
+        else
+          this.props.openDrawer(this.props.Open);
     }
 
 
@@ -29,8 +30,12 @@ class App extends Component {
             {"name": "description", "content": "Panel Compropago"},
           ]}
         />
-        <Header handleTouchTapOpen={this.handleTouchTapOpen}></Header>
-        <Drawer className="side-nav fixed" docked={false} width={300} open={this.state.open}>
+        <Header>
+          <Button onTouchTap={this.handleTouchTapOpen}>
+                Menu 
+          </Button>
+        </Header>
+        <Drawer className="side-nav fixed" docked={false} width={300} open={this.props.Open}>
             <div>fgdfgdfg</div>
         </Drawer>
         <div className="container">
@@ -41,8 +46,21 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {}
+function mapDispathToProps(dispatch) {
+  return {
+    openDrawer: () => {
+        dispatch(openDrawer())
+    },
+    closeDrawer: () => {
+        dispatch(closeDrawer())
+    }
+  }
 }
 
-export default connect(mapStateToProps)(App)
+function mapStateToProps(state) {
+  return {
+    Open: state.drawer.open
+  }
+}
+
+export default connect(mapStateToProps, mapDispathToProps)(App)
