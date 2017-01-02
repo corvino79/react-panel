@@ -11,8 +11,8 @@
     "postinstall": "npm run build"
   },
   "engines": {
-    "node": "6.1.0",
-    "npm": "3.8.6"
+    "node": "4.7.0",
+    "npm": "2.15.11"
   },
   "license": "MIT",
   "bugs": {
