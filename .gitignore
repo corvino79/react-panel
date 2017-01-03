@@ -1,5 +1,4 @@
 *.swp
 node_modules
-dist
 .tmp
 gulp.js
