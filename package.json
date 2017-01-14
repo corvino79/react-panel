@@ -11,8 +11,8 @@
     "postinstall": "npm install gulp-less -g && npm install babel-preset-stage-0 -g"
   },
   "engines": {
-    "node": "6.1.0",
-    "npm": "3.8.6"
+    "node": "4.7.0",
+    "npm": "1.4.9"
   },
   "license": "MIT",
   "bugs": {
